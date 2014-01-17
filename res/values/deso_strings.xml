@@ -171,4 +171,8 @@
     <string name="magisk_title">Magisk Manager</string>
     <string name="magisk_summary">Root management</string>
 
+    <!-- SuperSU header name -->
+    <string name="supersu_title">SuperSU</string>
+    <string name="supersu_summary">Manage root permissions</string>
+
 </resources>
