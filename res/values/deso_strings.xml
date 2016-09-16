@@ -160,4 +160,7 @@
     <string name="ime_switcher_notify">Selector notification</string>
     <string name="ime_switcher_notify_summary">Display input method selector notification</string>
 
+    <!-- Substratum  -->
+    <string name="substratum_title">Substratum</string>
+
 </resources>

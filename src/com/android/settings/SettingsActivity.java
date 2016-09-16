@@ -251,6 +251,8 @@ public class SettingsActivity extends SettingsDrawerActivity
     private static final String PROFILEMGR_MAIN_FRAGMENT = "com.android.settings.ProfileMgrMain";
     private static final String MOBILENETWORK_FRAGMENT = "com.android.settings.MobileNetworkMain";
     private static final String SYSTEM_UPDATE = "android.settings.SystemUpdateActivity";
+    private static final String SUBSTRATUM_FRAGMENT = "com.android.settings.Substratum";
+
     private String mFragmentClass;
     private String mActivityAction;
 
@@ -1114,9 +1116,16 @@ public class SettingsActivity extends SettingsDrawerActivity
             return null;
         }
 
-
         if (SYSTEM_UPDATE.equals(fragmentName)) {
             SystemUpdateHandle ();
+            return null;
+        }
+
+        if (SUBSTRATUM_FRAGMENT.equals(fragmentName)) {
+            Intent substratumIntent = new Intent();
+            substratumIntent.setClassName("projekt.substratum", "projekt.substratum.LaunchActivity");
+            startActivity(substratumIntent);
+            finish();
             return null;
         }
 
@@ -1292,6 +1301,16 @@ public class SettingsActivity extends SettingsDrawerActivity
         setTileEnabled(new ComponentName(packageName,
                         Settings.DevelopmentSettingsActivity.class.getName()),
                 showDev, isAdmin, pm);
+
+        // Remove Substratum if not installed
+        boolean subSupported = false;
+        try {
+            subSupported = (getPackageManager().getPackageInfo("projekt.substratum", 0).versionCode >= 0);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.SubstratumActivity.class.getName()),
+                subSupported, isAdmin, pm);
 
         // Reveal development-only quick settings tiles
         DevelopmentTiles.setTilesEnabled(this, showDev);
