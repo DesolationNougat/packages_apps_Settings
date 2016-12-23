@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2012-2015 The CyanogenMod Project
+     Copyright (C) 2017 Desolation ROM
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -21,5 +21,30 @@
     <string name="heads_up_notifications">Heads up</string>
     <string name="summary_heads_up_enabled">Pop-up notifications are enabled</string>
     <string name="summary_heads_up_disabled">Pop-up notifications are disabled</string>
+
+    <!-- Color engine -->
+    <integer-array name="primary_colors">
+        <item>@*android:color/primary_device_default_settings</item>
+        <item>@*android:color/grey_primary_color</item>
+        <item>@color/pixel_primary_color</item>
+        <item>@*android:color/dark_primary_color</item>
+    </integer-array>
+
+    <integer-array name="accent_colors">
+        <item>@*android:color/accent_device_default_light</item>
+        <item>@*android:color/green_accent_color</item>
+        <item>@*android:color/cyan_accent_color</item>
+        <item>@*android:color/blue_accent_color</item>
+        <item>@*android:color/yellow_accent_color</item>
+        <item>@*android:color/orange_accent_color</item>
+        <item>@*android:color/red_accent_color</item>
+        <item>@*android:color/pink_accent_color</item>
+        <item>@*android:color/purple_accent_color</item>
+        <item>@*android:color/grey_accent_color</item>
+    </integer-array>
+
+    <string-array name="color_name">
+        <item>@string/theme_switch_palette</item>
+    </string-array>
 
 </resources>
