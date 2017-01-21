@@ -59,6 +59,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 import com.android.internal.view.RotationPolicy;
 import com.android.settings.accessibility.ToggleFontSizePreferenceFragment;
+import com.android.settings.dashboard.DashboardSummary;
 import com.android.settings.dashboard.SummaryLoader;
 import com.android.settings.display.ScreenZoomPreference;
 import com.android.settings.search.BaseSearchIndexProvider;
@@ -122,6 +123,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String FONT_SIZE_MEDIUM = "1.05";
     private static final String FONT_SIZE_LARGE = "1.15";
     private static final String FONT_SIZE_VERYLARGE = "1.30";
+    private static final String DASHBOARD_COLUMNS = "dashboard_columns";
 
     private Preference mFontSizePref;
     private ScreenZoomPreference mScreenZoomPref;
@@ -129,6 +131,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private TimeoutListPreference mScreenTimeoutPreference;
     private ListPreference mNightModePreference;
+    private ListPreference mDashboardColumns;
     private Preference mScreenSaverPreference;
     private SwitchPreference mLiftToWakePreference;
     private SwitchPreference mDozePreference;
@@ -267,6 +270,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         } else {
             removePreference(KEY_AUTO_ROTATE);
         }
+
+        mDashboardColumns = (ListPreference) findPreference(DASHBOARD_COLUMNS);
+        mDashboardColumns.setValue(String.valueOf(Settings.System.getInt(
+                getContentResolver(), Settings.System.DASHBOARD_COLUMNS, DashboardSummary.mNumColumns)));
+        mDashboardColumns.setSummary(mDashboardColumns.getEntry());
+        mDashboardColumns.setOnPreferenceChangeListener(this);
 
         if (isVrDisplayModeAvailable(activity)) {
             DropDownPreference vrDisplayPref =
@@ -573,6 +582,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.Secure.putInt(getContentResolver(), CAMERA_GESTURE_DISABLED,
                     value ? 0 : 1 /* Backwards because setting is for disabling */);
+        }
+        if (preference == mDashboardColumns) {
+            Settings.System.putInt(getContentResolver(), Settings.System.DASHBOARD_COLUMNS,
+                    Integer.valueOf((String) objValue));
+            mDashboardColumns.setValue(String.valueOf(objValue));
+            mDashboardColumns.setSummary(mDashboardColumns.getEntry());
+            return true;
         }
         if (preference == mNightModePreference) {
             try {
