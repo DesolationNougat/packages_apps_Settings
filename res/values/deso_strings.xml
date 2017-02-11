@@ -166,5 +166,9 @@
     <!-- Kernel Adiutor  -->
     <string name="ka_title">Kernel Adiutor</string>
     <string name="ka_summary">Fine tune your device</string>
+ 
+    <!-- Magisk Manager -->
+    <string name="magisk_title">Magisk Manager</string>
+    <string name="magisk_summary">Root management</string>
 
 </resources>

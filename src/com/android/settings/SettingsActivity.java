@@ -247,6 +247,7 @@ public class SettingsActivity extends SettingsDrawerActivity
     private static final int REQUEST_SUGGESTION = 42;
 
     private static final String ACTION_TIMER_SWITCH = "qualcomm.intent.action.TIMER_SWITCH";
+    private static final String MAGISK_FRAGMENT = "com.android.settings.MagiskManager";
 
     private static final String LTE_4G_FRAGMENT = "com.android.settings.Lte4GEnableSetting";
     private static final String PROFILEMGR_MAIN_FRAGMENT = "com.android.settings.ProfileMgrMain";
@@ -1108,11 +1109,20 @@ public class SettingsActivity extends SettingsDrawerActivity
             finish();
             return null;
         }
+
         if (MOBILENETWORK_FRAGMENT.equals(fragmentName)) {
             Intent mobileNetworkIntent = new Intent();
             mobileNetworkIntent.setAction("android.settings.DATA_ROAMING_SETTINGS");
             mobileNetworkIntent.setPackage("com.qualcomm.qti.networksetting");
             startActivity(mobileNetworkIntent);
+            finish();
+            return null;
+        }
+
+        if (MAGISK_FRAGMENT.equals(fragmentName)) {
+            Intent magiskIntent = new Intent();
+            magiskIntent.setClassName("com.topjohnwu.magisk", "com.topjohnwu.magisk.SplashActivity");
+            startActivity(magiskIntent);
             finish();
             return null;
         }
@@ -1345,6 +1355,16 @@ public class SettingsActivity extends SettingsDrawerActivity
         setTileEnabled(new ComponentName(packageName,
                         Settings.KActivity.class.getName()),
                 kapresent, isAdmin, pm);
+
+        // Magisk Manager
+        boolean magiskSupported = false;
+        try {
+            magiskSupported = (getPackageManager().getPackageInfo("com.topjohnwu.magisk", 0).versionCode > 0);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.MagiskActivity.class.getName()),
+                magiskSupported, isAdmin, pm);
 
         if (UserHandle.MU_ENABLED && !isAdmin) {
             // When on restricted users, disable all extra categories (but only the settings ones).
