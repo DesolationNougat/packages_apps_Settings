@@ -171,6 +171,7 @@ public class SettingsActivity extends SettingsDrawerActivity
     private static final String SAVE_KEY_SHOW_HOME_AS_UP = ":settings:show_home_as_up";
     private static final String SAVE_KEY_SHOW_SEARCH = ":settings:show_search";
     private static final String SAVE_KEY_HOME_ACTIVITIES_COUNT = ":settings:home_activities_count";
+    private static final String KA_FRAGMENT = "com.android.settings.ka";
 
     /**
      * When starting this activity, the invoking Intent can contain this extra
@@ -1129,6 +1130,14 @@ public class SettingsActivity extends SettingsDrawerActivity
             return null;
         }
 
+        if (KA_FRAGMENT.equals(fragmentName)) {
+            Intent kaIntent = new Intent();
+            kaIntent.setClassName("com.grarak.kerneladiutor", "com.grarak.kerneladiutor.MainActivity");
+            startActivity(kaIntent);
+            finish();
+            return null;
+        }
+
         if (validate && !isValidFragment(fragmentName)) {
             throw new IllegalArgumentException("Invalid fragment for this activity: "
                     + fragmentName);
@@ -1326,6 +1335,16 @@ public class SettingsActivity extends SettingsDrawerActivity
         setTileEnabled(new ComponentName(packageName,
                 Settings.TimerSwitchSettingsActivity.class.getName()),
                 showTimerSwitch, isAdmin, pm);
+
+        // Kernel Adiutor
+        boolean kapresent = false;
+        try {
+            kapresent = (getPackageManager().getPackageInfo("com.grarak.kerneladiutor", 0).versionCode > 0);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.KActivity.class.getName()),
+                kapresent, isAdmin, pm);
 
         if (UserHandle.MU_ENABLED && !isAdmin) {
             // When on restricted users, disable all extra categories (but only the settings ones).

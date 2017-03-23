@@ -163,4 +163,8 @@
     <!-- Substratum  -->
     <string name="substratum_title">Substratum</string>
 
+    <!-- Kernel Adiutor  -->
+    <string name="ka_title">Kernel Adiutor</string>
+    <string name="ka_summary">Fine tune your device</string>
+
 </resources>
