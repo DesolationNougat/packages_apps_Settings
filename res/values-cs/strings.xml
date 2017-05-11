@@ -3333,4 +3333,9 @@
     <string name="automatic_storage_manager_activation_warning" msgid="6353100011690933254">"Úložiště je nyní spravováno správcem úložiště."</string>
     <string name="carrier_provisioning" msgid="4398683675591893169">"Informace o zprovoznění služby u operátora"</string>
     <string name="trigger_carrier_provisioning" msgid="3434865918009286187">"Spustit zprovoznění služby u operátora"</string>
+    <!-- Incall vibrate options -->
+    <string name="incall_vibration_category">Možnosti vibrací při volání</string>
+    <string name="incall_vibrate_connect_title">Vibrovat při připojení</string>
+    <string name="incall_vibrate_call_wait_title">Vibrovat při čekání</string>
+    <string name="incall_vibrate_disconnect_title">Vibrovat při odpojení</string>
 </resources>

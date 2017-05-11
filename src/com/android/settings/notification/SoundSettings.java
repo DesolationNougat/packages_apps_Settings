@@ -47,6 +47,8 @@ import android.provider.OpenableColumns;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v7.preference.TwoStatePreference;
 import android.text.TextUtils;
@@ -86,8 +88,8 @@ public class SoundSettings extends SettingsPreferenceFragment implements Indexab
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
     private static final String KEY_ZEN_MODE = "zen_mode";
     private static final String KEY_CELL_BROADCAST_SETTINGS = "cell_broadcast_settings";
-
     private static final String SELECTED_PREFERENCE_KEY = "selected_preference";
+    private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
     private static final int REQUEST_CODE = 200;
 
     private static final String[] RESTRICTED_KEYS = {
@@ -154,12 +156,16 @@ public class SoundSettings extends SettingsPreferenceFragment implements Indexab
                 initVolumePreference(KEY_NOTIFICATION_VOLUME, AudioManager.STREAM_NOTIFICATION,
                         com.android.internal.R.drawable.ic_audio_ring_notif_mute);
 
+        PreferenceScreen prefScreen = getPreferenceScreen();
+        PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
+
         if (mVoiceCapable) {
             mVolumeLinkNotification = (TwoStatePreference) findPreference(KEY_VOLUME_LINK_NOTIFICATION);
             mRingPreference =
                     initVolumePreference(KEY_RING_VOLUME, AudioManager.STREAM_RING,
                             com.android.internal.R.drawable.ic_audio_ring_notif_mute);
         } else {
+            prefScreen.removePreference(incallVibCategory);
             removePreference(KEY_RING_VOLUME);
             removePreference(KEY_VOLUME_LINK_NOTIFICATION);
         }
@@ -187,6 +193,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements Indexab
         initVolumeLinkNotification();
         updateRingerMode();
         updateEffectsSuppressor();
+
 
         if (savedInstanceState != null) {
             String selectedPreference = savedInstanceState.getString(SELECTED_PREFERENCE_KEY, null);

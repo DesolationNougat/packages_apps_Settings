@@ -3259,4 +3259,9 @@
     <string name="automatic_storage_manager_activation_warning" msgid="6353100011690933254">"Seu armazenamento está sendo controlado pelo gerenciador de armazenamento"</string>
     <string name="carrier_provisioning" msgid="4398683675591893169">"Informações de aprovisionamento da operadora"</string>
     <string name="trigger_carrier_provisioning" msgid="3434865918009286187">"Acionar aprovisionamento da operadora"</string>
+    <!-- Incall vibrate options -->
+    <string name="incall_vibration_category">Opções de vibração na chamada</string>
+    <string name="incall_vibrate_connect_title">Vibrar ao atender</string>
+    <string name="incall_vibrate_call_wait_title">Vibrar na chamada em espera</string>
+    <string name="incall_vibrate_disconnect_title">Vibrar ao desligar</string>
 </resources>

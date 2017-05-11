@@ -3333,4 +3333,9 @@
     <string name="automatic_storage_manager_activation_warning" msgid="6353100011690933254">"Память устройства теперь управляется менеджером хранилища"</string>
     <string name="carrier_provisioning" msgid="4398683675591893169">"Сведения об операторе"</string>
     <string name="trigger_carrier_provisioning" msgid="3434865918009286187">"Запустить синхронизацию оператора"</string>
+    <!-- Incall vibrate options -->
+    <string name="incall_vibration_category">Настройка вибрации при вызове</string>
+    <string name="incall_vibrate_connect_title">Вибрировать при ответе</string>
+    <string name="incall_vibrate_call_wait_title">Вибрация при ожидании</string>
+    <string name="incall_vibrate_disconnect_title">Вибрировать при отбое</string>
 </resources>
