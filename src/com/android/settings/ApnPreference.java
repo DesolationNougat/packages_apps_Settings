@@ -52,7 +52,6 @@ public class ApnPreference extends Preference implements
     private boolean mProtectFromCheckedChange = false;
     private boolean mSelectable = true;
     private boolean mApnReadOnly = false;
-    private int mSubId = -1;
 
     @Override
     public void onBindViewHolder(PreferenceViewHolder view) {
@@ -119,7 +118,6 @@ public class ApnPreference extends Preference implements
                 int pos = Integer.parseInt(getKey());
                 Uri url = ContentUris.withAppendedId(Telephony.Carriers.CONTENT_URI, pos);
                 Intent intent = new Intent(Intent.ACTION_EDIT, url);
-                intent.putExtra(ApnSettings.SUB_ID, mSubId);
                 intent.putExtra("DISABLE_EDITOR", mApnReadOnly);
                 context.startActivity(intent);
             }
@@ -140,9 +138,5 @@ public class ApnPreference extends Preference implements
 
     public boolean getApnReadOnly() {
         return mApnReadOnly;
-    }
-
-    public void setSubId(int subId) {
-        mSubId = subId;
     }
 }
