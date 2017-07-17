@@ -66,4 +66,11 @@
             android:title="@string/emergency_tone_title"
             android:summary="%s" />
 
+    <!-- Screenshot sound -->
+    <com.android.settings.preference.SystemSettingSwitchPreference
+            android:key="screenshot_sound"
+            android:title="@string/screenshot_sound_title"
+            android:summary="@string/screenshot_sound_summary"
+            android:defaultValue="true" />
+
 </PreferenceScreen>
