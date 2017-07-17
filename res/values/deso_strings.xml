@@ -15,6 +15,10 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- Desolation Version -->
+    <string name="deso_version_title">Desolation ROM version</string>
+    <string name="deso_version_default">Unknown</string>
+
     <!-- Custom Settings -->    
     <!-- Dashboard -->
     <string name="header_category_custom">ROM Control</string>
