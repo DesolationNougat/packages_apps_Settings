@@ -179,4 +179,5 @@ public class Settings extends SettingsActivity {
     public static class KActivity extends SettingsActivity { /* empty */ }
     public static class MagiskActivity extends SettingsActivity { /* empty */ }
     public static class SuperSUActivity extends SettingsActivity { /* empty */ }
+    public static class EXActivity extends SettingsActivity { /* empty */ }
 }

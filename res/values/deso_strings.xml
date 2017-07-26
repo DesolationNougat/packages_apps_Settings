@@ -175,4 +175,6 @@
     <string name="supersu_title">SuperSU</string>
     <string name="supersu_summary">Manage root permissions</string>
 
+    <string name="ex_title">EX-KM</string>
+    <string name="ex_summary">Kernel Management</string>
 </resources>

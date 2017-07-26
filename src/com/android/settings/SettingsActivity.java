@@ -255,6 +255,7 @@ public class SettingsActivity extends SettingsDrawerActivity
     private static final String SYSTEM_UPDATE = "android.settings.SystemUpdateActivity";
     private static final String SUBSTRATUM_FRAGMENT = "com.android.settings.Substratum";
     private static final String SUPERSU_FRAGMENT = "com.android.settings.SuperSU";
+    private static final String EX_FRAGMENT = "com.android.settings.EX";
 
     private String mFragmentClass;
     private String mActivityAction;
@@ -1149,6 +1150,14 @@ public class SettingsActivity extends SettingsDrawerActivity
             return null;
         }
 
+        if (EX_FRAGMENT.equals(fragmentName)) {
+            Intent exIntent = new Intent();
+            exIntent.setClassName("flar2.exkernelmanager", "flar2.exkernelmanager.MainActivity");
+            startActivity(exIntent);
+            finish();
+            return null;
+        }
+
         if (SUPERSU_FRAGMENT.equals(fragmentName)) {
             Intent superSUIntent = new Intent();
             superSUIntent.setClassName("eu.chainfire.supersu", "eu.chainfire.supersu.MainActivity");
@@ -1339,6 +1348,16 @@ public class SettingsActivity extends SettingsDrawerActivity
         setTileEnabled(new ComponentName(packageName,
                         Settings.SubstratumActivity.class.getName()),
                 subSupported, isAdmin, pm);
+
+        //EX
+        boolean expresent = false;
+        try {
+            expresent = (getPackageManager().getPackageInfo("flar2.exkernelmanager", 0).versionCode > 0);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        setTileEnabled(new ComponentName(packageName,
+                        Settings.EXActivity.class.getName()),
+                expresent, isAdmin, pm);
 
         // SuperSU
         boolean suSupported = false;
