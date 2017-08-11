@@ -144,6 +144,7 @@ import com.deso.settings.DesoSettings;
 import com.deso.settings.fragments.QSSettings;
 
 import java.net.URISyntaxException;
+import com.android.internal.util.tesla.TeslaUtils;
 import com.deso.settings.fragments.FlingSettings;
 import com.deso.settings.fragments.NavbarSettings;
 import com.deso.settings.fragments.SmartbarSettings;
@@ -1144,7 +1145,12 @@ public class SettingsActivity extends SettingsDrawerActivity
 
         if (KA_FRAGMENT.equals(fragmentName)) {
             Intent kaIntent = new Intent();
-            kaIntent.setClassName("com.grarak.kerneladiutor", "com.grarak.kerneladiutor.MainActivity");
+            if (TeslaUtils.isPackageInstalled(getApplicationContext(),"com.grarak.kerneladiutor")){
+                kaIntent.setClassName("com.grarak.kerneladiutor", "com.grarak.kerneladiutor.activities.MainActivity");
+            }
+            if (TeslaUtils.isPackageInstalled(getApplicationContext(),"com.kerneladiutor.mod")){
+                kaIntent.setClassName("com.kerneladiutor.mod", "com.grarak.kerneladiutor.MainActivity");
+            }
             startActivity(kaIntent);
             finish();
             return null;
@@ -1388,6 +1394,10 @@ public class SettingsActivity extends SettingsDrawerActivity
         boolean kapresent = false;
         try {
             kapresent = (getPackageManager().getPackageInfo("com.grarak.kerneladiutor", 0).versionCode > 0);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        try {
+            kapresent = (getPackageManager().getPackageInfo("com.kerneladiutor.mod", 0).versionCode > 0);
         } catch (PackageManager.NameNotFoundException e) {
         }
         setTileEnabled(new ComponentName(packageName,
